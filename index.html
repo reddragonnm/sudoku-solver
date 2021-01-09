@@ -5,15 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sudoku Solver</title>
 
+    <link rel="stylesheet" href="styles.css" />
+
     <script src="libraries/p5.js"></script>
     <script src="sketch.js"></script>
     <script src="solver.js"></script>
+    <script src="generator.js"></script>
   </head>
 
   <body>
-    <div class="canvas"></div>
+    <div class="page">
+      <div class="instructions">
+        <h1>Instructions:</h1>
 
-    <button onclick="toSolve=true;">Start Solving</button>
-    <button onclick="resetBoard();">Reset Board</button>
+        <h3>Placing numbers in cells:</h3>
+        <p>Click a cell and type a number from 1-9</p>
+
+        <h3>Delete a number from a cell:</h3>
+        <p>
+          To delete a number from a cell click a cell and press backspace or
+          delete
+        </p>
+      </div>
+
+      <div class="canvas"></div>
+
+      <div class="buttons">
+        <button onclick="toSolve=true;">Start Solving</button>
+        <button onclick="resetBoard();">Reset Board</button>
+        <button onclick="getRandBoard();">Random Board</button>
+      </div>
+    </div>
   </body>
 </html>

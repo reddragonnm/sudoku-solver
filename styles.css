@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: plum;
+}
+
+.page {
+  display: flex;
+  flex-direction: row;
+  margin: auto 30px;
+}
+
+.canvas {
+  flex: 2;
+}
+
+.instructions {
+  width: 50%;
+  flex: 1;
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  margin: auto;
+}
+
+button {
+  margin-top: 20px;
+  padding: 20px;
+  font-weight: bold;
+  background-color: chartreuse;
+  color: white;
+  border: none;
+  border-radius: 60px;
+  font-size: 20px;
+
+  width: 70%;
+}

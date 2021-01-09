@@ -1,20 +1,7 @@
-let solvedBoard;
 let selectedTile;
 
 let toSolve = false;
-let tileSize = 50;
-
-// let board = [
-//   [5, 3, 0, 0, 7, 0, 0, 0, 0],
-//   [6, 0, 0, 1, 9, 5, 0, 0, 0],
-//   [0, 9, 8, 0, 0, 0, 0, 6, 0],
-//   [8, 0, 0, 0, 6, 0, 0, 0, 3],
-//   [4, 0, 0, 8, 0, 3, 0, 0, 1],
-//   [7, 0, 0, 0, 2, 0, 0, 0, 6],
-//   [0, 6, 0, 0, 0, 0, 2, 8, 0],
-//   [0, 0, 0, 4, 1, 9, 0, 0, 5],
-//   [0, 0, 0, 0, 8, 0, 0, 7, 9],
-// ];
+let tileSize = 67;
 
 let board;
 let invalidKey = false;
@@ -33,7 +20,6 @@ function resetBoard() {
   initBoard();
   toSolve = false;
   selectedTile = null;
-  solvedBoard = null;
 }
 
 function mousePressed() {
@@ -47,7 +33,10 @@ function mousePressed() {
 
 function keyPressed() {
   if (selectedTile) {
-    if ("123456789".includes(key) && isValid(parseInt(key), selectedTile[1], selectedTile[0])) {
+    if (
+      "123456789".includes(key) &&
+      isValid(parseInt(key), selectedTile[1], selectedTile[0])
+    ) {
       board[selectedTile[1]][selectedTile[0]] = parseInt(key);
     } else {
       invalidKey = true;
@@ -63,13 +52,14 @@ function keyReleased() {
 }
 
 function showBoard(board) {
-  textSize(30);
+  textSize(50);
   textAlign(CENTER, CENTER);
 
-  stroke(0);
-  fill(0);
   for (let i = 0; i < 9; i++) {
     for (let j = 0; j < 9; j++) {
+      stroke(0);
+      fill("yellow");
+
       if (j % 3 == 0) strokeWeight(4);
       else strokeWeight(1);
       if (j != 0) line(j * tileSize, 0, j * tileSize, height);
@@ -78,7 +68,7 @@ function showBoard(board) {
       else strokeWeight(1);
       if (i != 0) line(0, i * tileSize, width, i * tileSize);
 
-      stroke(0);
+      noStroke();
       strokeWeight(1);
       let t = board[i][j];
       if (t != 0)
@@ -92,7 +82,7 @@ function showBoard(board) {
 
     noFill();
     if (!invalidKey) stroke("lightgreen");
-    else stroke('red');
+    else stroke("red");
     strokeWeight(4);
     rect(i * tileSize, j * tileSize, tileSize, tileSize);
   }
@@ -120,14 +110,13 @@ function solveBoard(board, movesToDisplay) {
 }
 
 function draw() {
-  background(255);
+  background("plum");
 
   if (toSolve) solveBoard(board, 100);
 
   if (hist.length > 0) {
-    solvedBoard = hist.shift();
+    board = hist.shift();
   }
 
-  if (solvedBoard) showBoard(solvedBoard);
-  else showBoard(board);
+  showBoard(board);
 }

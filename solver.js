@@ -24,7 +24,6 @@ function isValid(num, i, j) {
 
 function solve(board) {
   let t = getEmpty(board);
-
   if (t == null) {
     return true;
   }
