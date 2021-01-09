@@ -1,7 +1,7 @@
 let selectedTile;
 
 let toSolve = false;
-let tileSize = 67;
+let tileSize = 66;
 
 let board;
 let invalidKey = false;
@@ -92,27 +92,17 @@ function setup() {
   let c = createCanvas(tileSize * 9, tileSize * 9);
   select(".canvas").child(c);
   initBoard();
-}
 
-function solveBoard(board, movesToDisplay) {
-  solve(board);
-
-  let histInterval = floor(hist.length / movesToDisplay) + 1;
-
-  let newHist = [];
-  for (let i = 0; i < hist.length; i += histInterval) {
-    newHist.push(hist[i]);
-  }
-  newHist.push(hist[hist.length - 1]);
-
-  hist = newHist;
-  toSolve = false;
+  textFont("Poppins");
 }
 
 function draw() {
   background("plum");
 
-  if (toSolve) solveBoard(board, 100);
+  if (toSolve) {
+    solve(board);
+    toSolve = false;
+  }
 
   if (hist.length > 0) {
     board = hist.shift();
