@@ -17,6 +17,7 @@ let tileSize = 50;
 // ];
 
 let board;
+let invalidKey = false;
 
 function initBoard() {
   board = new Array(9);
@@ -46,12 +47,19 @@ function mousePressed() {
 
 function keyPressed() {
   if (selectedTile) {
-    if ("123456789".includes(key))
+    if ("123456789".includes(key) && isValid(parseInt(key), selectedTile[1], selectedTile[0])) {
       board[selectedTile[1]][selectedTile[0]] = parseInt(key);
+    } else {
+      invalidKey = true;
+    }
 
     if (key == "Backspace" || key == "Delete")
       board[selectedTile[1]][selectedTile[0]] = 0;
   }
+}
+
+function keyReleased() {
+  invalidKey = false;
 }
 
 function showBoard(board) {
@@ -83,7 +91,8 @@ function showBoard(board) {
     let j = selectedTile[1];
 
     noFill();
-    stroke("lightgreen");
+    if (!invalidKey) stroke("lightgreen");
+    else stroke('red');
     strokeWeight(4);
     rect(i * tileSize, j * tileSize, tileSize, tileSize);
   }
@@ -98,13 +107,14 @@ function setup() {
 function solveBoard(board, movesToDisplay) {
   solve(board);
 
-  let histInterval = floor(hist.length / movesToDisplay);
+  let histInterval = floor(hist.length / movesToDisplay) + 1;
 
   let newHist = [];
   for (let i = 0; i < hist.length; i += histInterval) {
     newHist.push(hist[i]);
   }
   newHist.push(hist[hist.length - 1]);
+
   hist = newHist;
   toSolve = false;
 }
@@ -112,7 +122,7 @@ function solveBoard(board, movesToDisplay) {
 function draw() {
   background(255);
 
-  if (toSolve) solveBoard(board, 30);
+  if (toSolve) solveBoard(board, 100);
 
   if (hist.length > 0) {
     solvedBoard = hist.shift();
