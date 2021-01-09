@@ -5,8 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sudoku Solver</title>
 
-    <scrip src="libraries/p5.js"></scrip>
+    <script src="libraries/p5.js"></script>
     <script src="sketch.js"></script>
+    <script src="solver.js"></script>
   </head>
-  <body></body>
+
+  <body>
+    <div class="canvas"></div>
+
+    <button onclick="toSolve=true;">Start Solving</button>
+    <button onclick="resetBoard();">Reset Board</button>
+  </body>
 </html>
