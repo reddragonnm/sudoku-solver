@@ -46,12 +46,12 @@ body {
 }
 
 .details .instructions h3 {
-  color: coral;
+  color: rgb(255, 106, 0);
   font-size: 22px;
 }
 
 .details .instructions h2 {
-  color: aquamarine;
+  color: rgb(252, 3, 136);
   text-decoration: underline;
   font-size: 35px;
 }

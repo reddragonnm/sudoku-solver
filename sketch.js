@@ -101,6 +101,15 @@ function draw() {
 
   if (toSolve) {
     solve(board);
+
+    let num = floor(hist.length / 100) + 1;
+    let newHist = [];
+    for (let i = 0; i < hist.length; i += num) {
+      newHist.push(hist[i]);
+    }
+    newHist.push(hist.pop());
+    hist = newHist;
+
     toSolve = false;
   }
 
