@@ -99,7 +99,7 @@ function setup() {
 function draw() {
   background("plum");
 
-  if (toSolve) {
+  if (toSolve && getEmpty(board) != null) {
     solve(board);
 
     let num = floor(hist.length / 100) + 1;
